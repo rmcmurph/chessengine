@@ -1,3 +1,4 @@
+package board;
 
 public class Move {
 	private int xDirection; 

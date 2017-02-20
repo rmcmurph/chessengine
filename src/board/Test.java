@@ -1,3 +1,4 @@
+package board;
 import java.util.List;
 
 public class Test {
