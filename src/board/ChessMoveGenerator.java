@@ -7,21 +7,35 @@ public class ChessMoveGenerator {
 	public static List<ChessBoard> getPossiblePositions(Position current, ChessBoard b){
 		if (!b.isOccupied(current)) return new ArrayList<ChessBoard>(); 
 		Piece p = b.getPiece(current); 
-		if (p.getIdentifier().equals("Bb") || p.getIdentifier().equals("Wb")) return getBishopPositions(current, b); 
-		if (p.getIdentifier().equals("Br") || p.getIdentifier().equals("Wr")) return getRookPositions(current, b); 
-		if (p.getIdentifier().equals("Bn") || p.getIdentifier().equals("Wn")) return getKnightPositions(current, b); 
-		if (p.getIdentifier().equals("Bp") || p.getIdentifier().equals("Wp")) return getPawnPositions(current, b);
-		if (p.getIdentifier().equals("Bk") || p.getIdentifier().equals("Wk")) return getKingPositions(current, b); 
-		if (p.getIdentifier().equals("Bq") || p.getIdentifier().equals("Wq")){
-			List<ChessBoard> boards = new ArrayList<ChessBoard>(); 
-			boards.addAll(getBishopPositions(current, b)); 
-			boards.addAll(getRookPositions(current, b)); 
-			return boards; 
+		List<ChessBoard> boards = new ArrayList<ChessBoard>(); 
+		if (p.getIdentifier().equals("Bb") || p.getIdentifier().equals("Wb")){
+			if (b.getIsWhitesTurn() == p.pieceIsWhite()) boards.addAll(getBishopPositions(current, b)); 
 		}
-		
+		if (p.getIdentifier().equals("Br") || p.getIdentifier().equals("Wr")){
+			if (b.getIsWhitesTurn() == p.pieceIsWhite()) boards.addAll(getRookPositions(current, b)); 
+		}
+		if (p.getIdentifier().equals("Bn") || p.getIdentifier().equals("Wn")){
+			if (b.getIsWhitesTurn() == p.pieceIsWhite()) boards.addAll(getKnightPositions(current, b)); 
+		}
+		if (p.getIdentifier().equals("Bp") || p.getIdentifier().equals("Wp")){
+			if (b.getIsWhitesTurn() == p.pieceIsWhite()) boards.addAll(getPawnPositions(current, b));
+		}
+		if (p.getIdentifier().equals("Bk") || p.getIdentifier().equals("Wk")){
+			if (b.getIsWhitesTurn() == p.pieceIsWhite()) boards.addAll(getKingPositions(current, b)); 
+		}
+		if (p.getIdentifier().equals("Bq") || p.getIdentifier().equals("Wq")){
+			if (b.getIsWhitesTurn() == p.pieceIsWhite()){
+				//List<ChessBoard> boards = new ArrayList<ChessBoard>(); 
+				boards.addAll(getBishopPositions(current, b)); 
+				boards.addAll(getRookPositions(current, b)); 
+				//return boards; 
+			}
+		}
+		p.setHasMoved(true);
+		return boards; 
 
 		
-		return new ArrayList<ChessBoard>(); 
+		//return new ArrayList<ChessBoard>(); 
 	}
 	
 	private static List<ChessBoard> getBishopPositions(Position current, ChessBoard b){
@@ -267,7 +281,9 @@ public class ChessMoveGenerator {
 	private static List<ChessBoard> getPawnPositions(Position current, ChessBoard b){
 		Piece currentPiece = b.getPiece(current); 
 		List<ChessBoard> possibleConfigurations = new ArrayList<ChessBoard>();
-		
+		Piece currentPawn = b.getPiece(current); 
+
+
 		//north
 		Position temp = new Position(current.getRow() - 1, current.getColumn()); 
 		if (isOnBoard(temp)){
@@ -275,6 +291,16 @@ public class ChessMoveGenerator {
 				possibleConfigurations.add(movePieceAndGenerateBoard(current, temp, b)); 
 			}
 		}
+
+		//double north
+		//if (!currentPawn.getHasMoved()){
+			temp = new Position(current.getRow() - 2, current.getColumn()); 
+			if (isOnBoard(temp)){
+				if (!b.isOccupied(temp)){
+					possibleConfigurations.add(movePieceAndGenerateBoard(current, temp, b)); 
+				}
+			}
+		//}
 
 		//northwest
 		temp = new Position(current.getRow() - 1, current.getColumn()-1); 
@@ -295,7 +321,7 @@ public class ChessMoveGenerator {
 				}
 			}
 		}
-		
+
 		return possibleConfigurations; 
 	}
 	

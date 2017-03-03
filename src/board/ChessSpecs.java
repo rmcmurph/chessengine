@@ -15,11 +15,16 @@ public class ChessSpecs {
 	public static final int QUEEN_VALUE = 900; 
 	public static final int KING_VALUE = 100000; 
 	
+	public static final int PAWN_ADJUSTMENT = 25; 
+	public static final int KNIGHT_ADJUSTMENT = 50; 
+	public static final int BISHOP_ADJUSTMENT = 20; 
+	public static final int KING_ADJUSTMENT = 50; 
+	
 	public static final int[][] PAWN_TABLE = {
 			   {0,  0,  0,  0,  0,  0,  0,  0},
 			  {45, 50, 40, 50, 50, 40, 45, 45},
-			  {15, 35, 20, 30, 30, 20, 35, 15},
-			   {5, 15, 10, 27, 27, 10, 15,  5},
+			  {15, 35, 20, 33, 33, 20, 35, 15},
+			   {5, 15, 10, 30, 30, 10, 15,  5},
 			   {0,  0,  0, 25, 25,  0,  0,  0},
 			   {5, -5,-10,  0,  0,-10, -5,  5},
 			   {5, 10, 10,-25,-25, 10, 10,  5},

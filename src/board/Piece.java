@@ -7,15 +7,15 @@ public class Piece {
 	private int materialValue; 
 	private int[][] positionValues; 
 	private boolean isWhite; 
+	private boolean hasMoved; 
 	
 	public Piece(char id, int value, int[][] posValues, boolean white){
 		identifier = id; 
 		materialValue = value; 
 		positionValues = posValues; 
 		isWhite = white; 
-		
+		hasMoved = false; 
 	}
-	
 	public static Piece createPawn(boolean isWhite){
 		return new Piece('p', ChessSpecs.PAWN_VALUE, ChessSpecs.PAWN_TABLE, isWhite); 
 	}
@@ -35,6 +35,8 @@ public class Piece {
 		return new Piece('k', ChessSpecs.KING_VALUE, ChessSpecs.KING_TABLE, isWhite); 
 	}
 	
+
+	
 	public String getIdentifier(){
 		if (isWhite) return "W"+identifier; 
 		return "B" + identifier; 
@@ -51,9 +53,16 @@ public class Piece {
 	public boolean pieceIsWhite(){
 		return isWhite; 
 	}
+	public void setHasMoved(boolean b){
+		hasMoved = b; 
+	}
+	public boolean getHasMoved(){
+		return hasMoved; 
+	}
 	
 	public Piece copy(){
 		Piece newPiece = new Piece(identifier, materialValue, positionValues, isWhite); 
+		newPiece.setHasMoved(this.hasMoved);
 		return newPiece; 
 	}
 	
