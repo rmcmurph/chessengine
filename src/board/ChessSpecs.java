@@ -1,9 +1,12 @@
 package board;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ChessSpecs {
 	public static final int ROWS = 8; 
 	public static final int COLUMNS = 8; 
+	
+	public static final HashMap<String, String> imageMap = new HashMap<String, String>(); 
 	
 	//public static final Move[] PAWN_MOVES ={new Move(-1, 1), new Move(0, 1), new Move(1, 1)}; 
 	//public static final Move[] BISHOP_MOVES = {new Move()
@@ -83,5 +86,21 @@ public class ChessSpecs {
 			    {20,  20,   0,   0,   0,   0,  20,  20},
 			    {20,  50,  10,   0,   0,  10,  50,  20}
 			  }; 
+	
+	public static String getImageName(String identifier){
+		imageMap.put("Wp", "white_pawn.png"); 
+		imageMap.put("Bp", "black_pawn.png"); 
+		imageMap.put("Wr", "white_rook.png"); 
+		imageMap.put("Br", "black_rook.png"); 
+		imageMap.put("Wb", "white_bishop.png"); 
+		imageMap.put("Bb", "black_bishop.png"); 
+		imageMap.put("Wn", "white_knight.png"); 
+		imageMap.put("Bn", "black_knight.png"); 
+		imageMap.put("Wq", "white_queen.png"); 
+		imageMap.put("Bq", "black_queen.png"); 
+		imageMap.put("Wk", "white_king.png"); 
+		imageMap.put("Bk", "black_king.png"); 
+		return imageMap.get(identifier);
+	}
 
 }

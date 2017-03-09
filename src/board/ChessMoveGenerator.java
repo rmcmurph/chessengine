@@ -293,14 +293,14 @@ public class ChessMoveGenerator {
 		}
 
 		//double north
-		//if (!currentPawn.getHasMoved()){
+		if (current.getRow() == 6){
 			temp = new Position(current.getRow() - 2, current.getColumn()); 
 			if (isOnBoard(temp)){
 				if (!b.isOccupied(temp)){
 					possibleConfigurations.add(movePieceAndGenerateBoard(current, temp, b)); 
 				}
 			}
-		//}
+		}
 
 		//northwest
 		temp = new Position(current.getRow() - 1, current.getColumn()-1); 
@@ -413,6 +413,25 @@ public class ChessMoveGenerator {
 				possibleConfigurations.add(movePieceAndGenerateBoard(current, temp, b)); 
 			}
 		}
+		
+		//castle
+		if (!b.isOccupied(new Position(7,1)) && !b.isOccupied(new Position(7,2)) && !b.isOccupied(new Position(7,3)) && b.isOccupied(new Position(7,0))){
+			ChessBoard newBoard = b.copy(); 
+			newBoard.movePiece(current, new Position(7,2));
+			newBoard.movePiece(new Position(7,0), new Position(7,3));
+			possibleConfigurations.add(newBoard); 
+		}
+		
+		//castle
+		if (!b.isOccupied(new Position(7,5)) && !b.isOccupied(new Position(7,5)) && b.isOccupied(new Position(7,7))){
+			ChessBoard newBoard = b.copy(); 
+			newBoard.movePiece(current, new Position(7,6));
+			newBoard.movePiece(new Position(7,7), new Position(7,5));
+			possibleConfigurations.add(newBoard); 
+		}
+
+		
+		
 		return possibleConfigurations; 
 	}
 	

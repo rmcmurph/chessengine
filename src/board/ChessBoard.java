@@ -81,15 +81,24 @@ public class ChessBoard {
 	
 	public String toString(){
 		StringBuilder s = new StringBuilder(); 
-		//s.append("is whites turn: " + isWhitesTurn + "\n"); 
+		s.append("   0  1  2  3  4  5  6  7\n"); 
+		
 		for (int r = 0; r < board.length; r++){
+			s.append(r + " "); 
 			for (int c = 0; c < board[0].length; c++){
 				if (board[r][c] == null) s.append("-  "); 
 				else s.append(board[r][c].getIdentifier() + " "); 
 			}
-			s.append("\n"); 
+			s.append("" + r + "\n"); 
 		}
+		
+		s.append("   0  1  2  3  4  5  6  7\n"); 
 		return s.toString(); 
+	}
+	
+	public String getIdentifierAt(Position p){
+		if (board[p.getRow()][p.getColumn()] == null) return "-"; 
+		return board[p.getRow()][p.getColumn()].getIdentifier(); 
 	}
 	
 	public ChessBoard copy(){
@@ -135,8 +144,8 @@ public class ChessBoard {
 		b.addPiece(new Position(0,0), Piece.createRook(false));
 		b.addPiece(new Position(0,1), Piece.createKnight(false));
 		b.addPiece(new Position(0,2), Piece.createBishop(false));
-		b.addPiece(new Position(0,3), Piece.createKing(false));
-		b.addPiece(new Position(0,4), Piece.createQueen(false));
+		b.addPiece(new Position(0,4), Piece.createKing(false));
+		b.addPiece(new Position(0,3), Piece.createQueen(false));
 		b.addPiece(new Position(0,5), Piece.createBishop(false));
 		b.addPiece(new Position(0,6), Piece.createKnight(false));
 		b.addPiece(new Position(0,7), Piece.createRook(false));
@@ -147,8 +156,8 @@ public class ChessBoard {
 		b.addPiece(new Position(7,0), Piece.createRook(true));
 		b.addPiece(new Position(7,1), Piece.createKnight(true));
 		b.addPiece(new Position(7,2), Piece.createBishop(true));
-		b.addPiece(new Position(7,3), Piece.createKing(true));
-		b.addPiece(new Position(7,4), Piece.createQueen(true));
+		b.addPiece(new Position(7,4), Piece.createKing(true));
+		b.addPiece(new Position(7,3), Piece.createQueen(true));
 		b.addPiece(new Position(7,5), Piece.createBishop(true));
 		b.addPiece(new Position(7,6), Piece.createKnight(true));
 		b.addPiece(new Position(7,7), Piece.createRook(true));
