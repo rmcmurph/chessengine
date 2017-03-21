@@ -8,8 +8,7 @@ public class ChessSpecs {
 	
 	public static final HashMap<String, String> imageMap = new HashMap<String, String>(); 
 	
-	//public static final Move[] PAWN_MOVES ={new Move(-1, 1), new Move(0, 1), new Move(1, 1)}; 
-	//public static final Move[] BISHOP_MOVES = {new Move()
+	//http://chessprogramming.wikispaces.com/Simplified+evaluation+function
 	
 	public static final int PAWN_VALUE = 100; 
 	public static final int BISHOP_VALUE = 315; 
@@ -23,6 +22,8 @@ public class ChessSpecs {
 	public static final int BISHOP_ADJUSTMENT = 20; 
 	public static final int KING_ADJUSTMENT = 50; 
 	
+	
+	//http://www.chessbin.com/post/Piece-Square-Table.aspx
 	public static final int[][] PAWN_TABLE = {
 			   {0,  0,  0,  0,  0,  0,  0,  0},
 			  {45, 50, 40, 50, 50, 40, 45, 45},

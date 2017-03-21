@@ -1,5 +1,7 @@
 # ChessEngine
 
 
-A chess engine for SLU csci3300
+A basic chess engine for SLU csci3300 group project
+
+....in progess
 

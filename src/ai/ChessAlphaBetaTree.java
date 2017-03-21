@@ -20,19 +20,18 @@ public class ChessAlphaBetaTree {
 
 	private int alphaBetaMax( int alpha, int beta, int depthleft, ChessBoard board, boolean first) {
 		
-		if ( depthleft == 0 ){
-			//return board.getBoardEvaluation();
+		if (depthleft == 0){
 			return this.Quiesce(alpha, beta, board); 
 		}
 		List<ChessBoard> allMoves = board.getAllPossibleMoves(); 
-		for ( ChessBoard current : allMoves) {
+		for (ChessBoard current : allMoves) {
 			int score = alphaBetaMin( alpha, beta, depthleft - 1, current.getFlippedBoard(), false);
 			if( score >= beta ){
-				return beta;   // fail hard beta-cutoff
+				return beta;   
 			}
-			if( score > alpha ){
+			if(score > alpha){
 				if (first) move = current.copy(); 
-				alpha = score; // alpha acts like max in MiniMax
+				alpha = score;
 			}
 		}
 		return alpha;
@@ -42,17 +41,16 @@ public class ChessAlphaBetaTree {
 
 
 		if (depthleft == 0){
-			//return -board.getBoardEvaluation(); 
 			return -this.Quiesce(alpha, beta, board); 
 		}
 		List<ChessBoard> allMoves = board.getAllPossibleMoves(); 
-		for ( ChessBoard current : allMoves) {
+		for (ChessBoard current : allMoves) {
 			int score = alphaBetaMax( alpha, beta, depthleft - 1 ,current.getFlippedBoard(), false);
-			if( score <= alpha ){
-				return alpha; // fail hard alpha-cutoff
+			if(score <= alpha){
+				return alpha; 
 			}
-			if( score < beta ){
-				beta = score; // beta acts like min in MiniMax
+			if(score < beta){
+				beta = score; 
 			}
 		}
 		return beta;
@@ -78,19 +76,7 @@ public class ChessAlphaBetaTree {
 		return alpha; 
 	}
 	
-//	def Quiesce(alpha, beta):
-//	    eval = static_evaluation()
-//	    if (eval >= beta):
-//	        return beta
-//	    alpha = max(alpha, eval)
-//	    for every move M which is a capture:
-//	        make move M
-//	        score = -Quiesce(-beta, -alpha)
-//	        undo move M
-//	        if (score >= beta):
-//	            return beta
-//	        alpha = max(alpha, score)
-//	    return alpha
+
 
 
 

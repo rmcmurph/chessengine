@@ -139,6 +139,21 @@ public class ChessBoard {
 		isWhitesTurn = !isWhitesTurn; 
 	}
 	
+	
+	public boolean equals(Object other){
+		if (other == null) return false; 
+		if (other.getClass() != this.getClass()) return false; 
+		ChessBoard otherBoard = (ChessBoard) other;  
+		for (int r = 0; r<ChessSpecs.ROWS; r++){
+			for (int c = 0; c<ChessSpecs.COLUMNS; c++){
+				if (this.getPiece(new Position(r,c)) != null && otherBoard.getPiece(new Position(r,c)) != null){
+					if (this.getPiece(new Position(r,c)).getIdentifier() != otherBoard.getPiece(new Position(r,c)).getIdentifier()) return false; 
+				}
+			}
+		}
+		return true; 
+	}
+	
 	public static ChessBoard InitialBoard(){
 		ChessBoard b = new ChessBoard(); 
 		b.addPiece(new Position(0,0), Piece.createRook(false));
