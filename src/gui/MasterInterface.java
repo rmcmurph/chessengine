@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import board.ChessBoard;
 import game.ChessGame;
 
 /**
@@ -36,24 +38,42 @@ public class MasterInterface extends JFrame{
 	 * updates the GUI when changes are made to DailyPlayerList
 	 */
 	public void display() {
+
+
+        JButton back = new JButton("Return to Main Menu");  
+        back.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent event)
+			{
+				Menu menu = new Menu();		
+				menu.displayMenu();
+				dispose();
+			}
+			
+		});
+        
+
 		
-		//the header
-		JLabel title = new JLabel("Chess Gui"); 
-        title.setHorizontalAlignment(SwingConstants.CENTER);
-        
-        
+		
         //clears frame
-		this.getContentPane().removeAll(); 
+		this.getContentPane().removeAll();
 		
+	    JPanel flowPanel = new JPanel(new FlowLayout());
+	    flowPanel.add(back);
+
 
 
 	    //add components to frame
 	    this.setLayout(new BorderLayout());
-        this.add(title, BorderLayout.NORTH);
         this.add(new ChessBoardPanel(), BorderLayout.CENTER); 
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+
+        
+        this.add(flowPanel, BorderLayout.NORTH);
        // this.remove();
 //        
-
+        
         
         this.pack(); 
         this.setVisible(true);

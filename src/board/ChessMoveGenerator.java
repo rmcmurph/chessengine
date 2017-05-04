@@ -423,7 +423,7 @@ public class ChessMoveGenerator {
 		}
 		
 		//castle
-		if (!b.isOccupied(new Position(7,5)) && !b.isOccupied(new Position(7,5)) && b.isOccupied(new Position(7,7))){
+		if (!b.isOccupied(new Position(7,5)) && !b.isOccupied(new Position(7,6)) && b.isOccupied(new Position(7,7))){
 			ChessBoard newBoard = b.copy(); 
 			newBoard.movePiece(current, new Position(7,6));
 			newBoard.movePiece(new Position(7,7), new Position(7,5));
@@ -449,7 +449,43 @@ public class ChessMoveGenerator {
 		ChessBoard newBoard = b.copy(); 
 		newBoard.movePiece(current, future);
 		return newBoard; 
+	}
+	
+	public static Position newPiecePosition(ChessBoard past, ChessBoard present){
+		for (int r = 0; r<ChessSpecs.ROWS; r++){
+			for (int c = 0; c<ChessSpecs.COLUMNS; c++){
+				if (!present.getIdentifierAt(new Position(r, c)).equals("-")){
+					if (!past.getIdentifierAt(new Position(r, c)).equals(present.getIdentifierAt(new Position(r, c)))){
+						if (present.getIdentifierAt(new Position(7, 6)).contains("k") && present.getIdentifierAt(new Position(7, 5)).contains("r")){
+							return new Position(7, 6); 
+						}else{
+							return new Position(r, c); 
+						}
+					}
+				}
+			}
+		}
 		
+		return null; 
+	}
+	
+	public static Position newEmptyPiecePosition(ChessBoard past, ChessBoard present){
+		for (int r = 0; r<ChessSpecs.ROWS; r++){
+			for (int c = 0; c<ChessSpecs.COLUMNS; c++){
+				if (present.getIdentifierAt(new Position(r, c)).equals("-")){
+					if (!past.getIdentifierAt(new Position(r, c)).equals(present.getIdentifierAt(new Position(r, c)))){
+//						if (present.getIdentifierAt(new Position(7, 6)).contains("k") && present.getIdentifierAt(new Position(7, 5)).contains("r")){
+//							return new Position(7, 6); 
+//						}else{
+//							return new Position(r, c); 
+//						}
+						return new Position(r, c); 
+					}
+				}
+			}
+		}
+		
+		return null; 
 	}
 
 }

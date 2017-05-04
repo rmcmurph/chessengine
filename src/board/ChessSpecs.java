@@ -15,7 +15,7 @@ public class ChessSpecs {
 	public static final int NIGHT_VALUE = 325; 
 	public static final int ROOK_VALUE = 500; 
 	public static final int QUEEN_VALUE = 900; 
-	public static final int KING_VALUE = 100000; 
+	public static final int KING_VALUE = 1000000; 
 	
 	public static final int PAWN_ADJUSTMENT = 25; 
 	public static final int KNIGHT_ADJUSTMENT = 50; 
@@ -89,19 +89,20 @@ public class ChessSpecs {
 			  }; 
 	
 	public static String getImageName(String identifier){
-		imageMap.put("Wp", "white_pawn.png"); 
-		imageMap.put("Bp", "black_pawn.png"); 
-		imageMap.put("Wr", "white_rook.png"); 
-		imageMap.put("Br", "black_rook.png"); 
-		imageMap.put("Wb", "white_bishop.png"); 
-		imageMap.put("Bb", "black_bishop.png"); 
-		imageMap.put("Wn", "white_knight.png"); 
-		imageMap.put("Bn", "black_knight.png"); 
-		imageMap.put("Wq", "white_queen.png"); 
-		imageMap.put("Bq", "black_queen.png"); 
-		imageMap.put("Wk", "white_king.png"); 
-		imageMap.put("Bk", "black_king.png"); 
+		imageMap.put("Wp", "0,5"); 
+		imageMap.put("Bp", "1,5"); 
+		imageMap.put("Wr", "0,2"); 
+		imageMap.put("Br", "1,2"); 
+		imageMap.put("Wb", "0,3"); 
+		imageMap.put("Bb", "1,3"); 
+		imageMap.put("Wn", "0,4"); 
+		imageMap.put("Bn", "1,4"); 
+		imageMap.put("Wq", "0,1"); 
+		imageMap.put("Bq", "1,1"); 
+		imageMap.put("Wk", "0,0"); 
+		imageMap.put("Bk", "1,0"); 
 		return imageMap.get(identifier);
+
 	}
 
 }

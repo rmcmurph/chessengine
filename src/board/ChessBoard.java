@@ -14,10 +14,39 @@ public class ChessBoard {
 	}
 	public void movePiece(Position currentPosition, Position futurePosition){
 		if (board[currentPosition.getRow()][currentPosition.getColumn()] != null){
-			board[futurePosition.getRow()][futurePosition.getColumn()] = board[currentPosition.getRow()][currentPosition.getColumn()];
-			board[currentPosition.getRow()][currentPosition.getColumn()] = null; 
+				board[futurePosition.getRow()][futurePosition.getColumn()] = board[currentPosition.getRow()][currentPosition.getColumn()];
+				board[currentPosition.getRow()][currentPosition.getColumn()] = null; 
 		}
 	}
+	
+	
+	
+	public boolean checkMove(Position currentPosition, Position futurePosition){
+		if (currentPosition==null) return false; 
+		
+		List<ChessBoard> validMoves = ChessMoveGenerator.getPossiblePositions(currentPosition, this); 
+		
+		ChessBoard attemptedBoard = this.copy(); 
+		attemptedBoard.movePiece(currentPosition, futurePosition);
+		
+		if (validMoves.contains(attemptedBoard)) return true; 
+		return false; 
+	}
+	
+	public List<Position> getValidPositions(Position p){
+		List<ChessBoard> boards = ChessMoveGenerator.getPossiblePositions(p, this); 
+		ArrayList<Position> positions = new ArrayList<Position>(); 
+		for (ChessBoard board : boards){
+			//System.out.println(this.getIdentifierAt(p));
+			positions.add(ChessMoveGenerator.newPiecePosition(this, board)); 
+		}
+		System.out.println(positions);
+		return positions; 
+		
+		
+		//return ChessMoveGenerator.getPossiblePositions(p, this);
+	}
+	
 
 	public int getBoardEvaluation(){
 		int eval = 0; 
@@ -100,6 +129,19 @@ public class ChessBoard {
 		if (board[p.getRow()][p.getColumn()] == null) return "-"; 
 		return board[p.getRow()][p.getColumn()].getIdentifier(); 
 	}
+	public Position getIdentifierPosition(String id){
+		for (int r = 0; r<board.length; r++){
+			for (int c = 0; c<board[0].length; c++){
+				//if (board[r][c]!=null) newBoard.addPiece(new Position(r, c), board[r][c].copy());
+				if (board[r][c] != null){
+					if (board[r][c].getIdentifier().equals(id)){
+						return new Position(r, c); 
+					}
+				}
+			}
+		}
+		return null; 
+	}
 	
 	public ChessBoard copy(){
 		ChessBoard newBoard = new ChessBoard(); 
@@ -124,6 +166,10 @@ public class ChessBoard {
 	private void checkSpotOccupation(Position p){
 		if (isOccupied(p)) throw new IllegalArgumentException("board spot is already occupied, can't move piece there"); 
 	}
+	
+	
+	
+	
 	public boolean isOccupied(Position p){
 		//checkPosition(row, column); 
 		if (board[p.getRow()][p.getColumn()] == null) return false; 
@@ -147,8 +193,10 @@ public class ChessBoard {
 		for (int r = 0; r<ChessSpecs.ROWS; r++){
 			for (int c = 0; c<ChessSpecs.COLUMNS; c++){
 				if (this.getPiece(new Position(r,c)) != null && otherBoard.getPiece(new Position(r,c)) != null){
-					if (this.getPiece(new Position(r,c)).getIdentifier() != otherBoard.getPiece(new Position(r,c)).getIdentifier()) return false; 
+					if (!this.getPiece(new Position(r,c)).getIdentifier().equals(otherBoard.getPiece(new Position(r,c)).getIdentifier())) return false; 
 				}
+				if (this.getPiece(new Position(r,c)) == null && otherBoard.getPiece(new Position(r,c)) != null) return false; 
+				if (this.getPiece(new Position(r,c)) != null && otherBoard.getPiece(new Position(r,c)) == null) return false; 
 			}
 		}
 		return true; 

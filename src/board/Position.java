@@ -19,4 +19,19 @@ public class Position {
 	public static Position getNewPosition(Position current, Move m){
 		return new Position(current.getRow() + m.getXDirection(), current.getColumn() + m.getYDirection()); 
 	}
+	
+	public boolean equals(Object other){
+		if (other == null) return false; 
+		if (other.getClass() != this.getClass()) return false; 
+		Position otherPosition = (Position) other;  
+		if (otherPosition.getRow() == this.getRow() && otherPosition.getColumn() == this.getColumn()){
+			return true; 
+		}
+		
+		return false; 
+	}
+	
+	public String toString(){
+		return "<" + row + " | " + column + ">"; 
+	}
 }
