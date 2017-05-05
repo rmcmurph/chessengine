@@ -12,7 +12,7 @@ import ai.ChessAlphaBetaTree;
 public class ChessGame {
 	private ChessBoard gameBoard = ChessBoard.InitialBoard(); 
 	private ChessAlphaBetaTree ai = new ChessAlphaBetaTree(); 
-	private List<String> graveyard = new ArrayList<>(); 
+	private static List<String> graveyard = new ArrayList<>(); 
 	
 	public void makeUserMove(Position current, Position future){
 		if (gameBoard.getIdentifierAt(current).contains("k") && current.getColumn()==4 && future.getColumn()==2){
@@ -52,7 +52,7 @@ public class ChessGame {
 		return move; 
 	}
 	
-	public List<String> getGraveyard(){
+	public static List<String> getGraveyard(){
 		return graveyard; 
 	}
 	

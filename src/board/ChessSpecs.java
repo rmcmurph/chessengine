@@ -88,21 +88,77 @@ public class ChessSpecs {
 			    {20,  50,  10,   0,   0,  10,  50,  20}
 			  }; 
 	
-	public static String getImageName(String identifier){
-		imageMap.put("Wp", "0,5"); 
-		imageMap.put("Bp", "1,5"); 
-		imageMap.put("Wr", "0,2"); 
-		imageMap.put("Br", "1,2"); 
-		imageMap.put("Wb", "0,3"); 
-		imageMap.put("Bb", "1,3"); 
-		imageMap.put("Wn", "0,4"); 
-		imageMap.put("Bn", "1,4"); 
-		imageMap.put("Wq", "0,1"); 
-		imageMap.put("Bq", "1,1"); 
-		imageMap.put("Wk", "0,0"); 
-		imageMap.put("Bk", "1,0"); 
+	public static String getDeadImageName(String identifier){
+		imageMap.put("Wp", "white_pawn.png"); 
+		imageMap.put("Bp", "black_pawn.png"); 
+		imageMap.put("Wr", "white_rook.png"); 
+		imageMap.put("Br", "black_rook.png"); 
+		imageMap.put("Wb", "white_bishop.png"); 
+		imageMap.put("Bb", "black_bishop.png"); 
+		imageMap.put("Wn", "white_knight.png"); 
+		imageMap.put("Bn", "black_knight.png"); 
+		imageMap.put("Wq", "white_queen.png"); 
+		imageMap.put("Bq", "black_queen.png"); 
+		imageMap.put("Wk", "white_king.png"); 
+		imageMap.put("Bk", "black_king.png"); 
 		return imageMap.get(identifier);
-
+	}
+	
+	public static String getImageName(String identifier){
+		imageMap.put("wWp", "w_w_pawn.png"); 
+		imageMap.put("bWp", "b_w_pawn.png"); 
+		imageMap.put("wBp", "w_b_pawn.png"); 
+		imageMap.put("bBp", "b_b_pawn.png");
+		imageMap.put("wWr", "w_w_rook.png"); 
+		imageMap.put("bWr", "b_w_rook.png");
+		imageMap.put("wBr", "w_b_rook.png"); 
+		imageMap.put("bBr", "b_b_rook.png"); 
+		imageMap.put("wWb", "w_w_bishop.png"); 
+		imageMap.put("bWb", "b_w_bishop.png"); 
+		imageMap.put("wBb", "w_b_bishop.png"); 
+		imageMap.put("bBb", "b_b_bishop.png"); 
+		imageMap.put("wWn", "w_w_knight.png"); 
+		imageMap.put("bWn", "b_w_knight.png"); 
+		imageMap.put("wBn", "w_b_knight.png"); 
+		imageMap.put("bBn", "b_b_knight.png");
+		imageMap.put("wWq", "w_w_queen.png"); 
+		imageMap.put("bWq", "b_w_queen.png"); 
+		imageMap.put("wBq", "w_b_queen.png"); 
+		imageMap.put("bBq", "b_b_queen.png"); 
+		imageMap.put("wWk", "w_w_king.png"); 
+		imageMap.put("bWk", "b_w_king.png"); 
+		imageMap.put("wBk", "w_b_king.png"); 
+		imageMap.put("bBk", "b_b_king.png"); 
+		imageMap.put("w", "w_square.png"); 
+		imageMap.put("b", "b_square.png"); 
+		
+		imageMap.put("wWp_star", "w_w_pawn_star.png"); 
+		imageMap.put("bWp_star", "b_w_pawn_star.png"); 
+		imageMap.put("wBp_star", "w_b_pawn_star.png"); 
+		imageMap.put("bBp_star", "b_b_pawn_star.png");
+		imageMap.put("wWr_star", "w_w_rook_star.png"); 
+		imageMap.put("bWr_star", "b_w_rook_star.png");
+		imageMap.put("wBr_star", "w_b_rook_star.png"); 
+		imageMap.put("bBr_star", "b_b_rook_star.png"); 
+		imageMap.put("wWb_star", "w_w_bishop_star.png"); 
+		imageMap.put("bWb_star", "b_w_bishop_star.png"); 
+		imageMap.put("wBb_star", "w_b_bishop_star.png"); 
+		imageMap.put("bBb_star", "b_b_bishop_star.png"); 
+		imageMap.put("wWn_star", "w_w_knight_star.png"); 
+		imageMap.put("bWn_star", "b_w_knight_star.png"); 
+		imageMap.put("wBn_star", "w_b_knight_star.png"); 
+		imageMap.put("bBn_star", "b_b_knight_star.png");
+		imageMap.put("wWq_star", "w_w_queen_star.png"); 
+		imageMap.put("bWq_star", "b_w_queen_star.png"); 
+		imageMap.put("wBq_star", "w_b_queen_star.png"); 
+		imageMap.put("bBq_star", "b_b_queen_star.png"); 
+		imageMap.put("wWk_star", "w_w_king_star.png"); 
+		imageMap.put("bWk_star", "b_w_king_star.png"); 
+		imageMap.put("wBk_star", "w_b_king_star.png"); 
+		imageMap.put("bBk_star", "b_b_king_star.png"); 
+		imageMap.put("w_star", "w_square_star.png"); 
+		imageMap.put("b_star", "b_square_star.png"); 
+		return imageMap.get(identifier);
 	}
 
 }
